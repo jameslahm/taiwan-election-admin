@@ -1,4 +1,7 @@
-const BASE_URL = "http://localhost:12345";
+const BASE_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:12345"
+    : "https://damp-cliffs-99712.herokuapp.com/";
 
 class HTTPError extends Error {
   constructor(message, status) {
