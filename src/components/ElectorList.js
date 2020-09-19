@@ -4,7 +4,7 @@ import { AuthContext, deleteElector, getElectors } from "../utils";
 import { Link as ReachLink } from "@reach/router";
 import { queryCache, useMutation, useQuery } from "react-query";
 
-function Elector() {
+function ElectorList() {
   const { authState } = useContext(AuthContext);
 
   const { data: electors = []} = useQuery(
@@ -21,6 +21,7 @@ function Elector() {
   const handleDelete = (id) => {
     mutate({ id, token: authState.token });
   };
+  console.log(electors)
 
   return (
     <Box pt={4} mt={2}>
@@ -59,4 +60,4 @@ function Elector() {
   );
 }
 
-export default Elector;
+export default ElectorList;

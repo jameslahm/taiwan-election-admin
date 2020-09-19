@@ -55,7 +55,10 @@ const getElectors = ({ token }) => {
   })
     .then(handleRes)
     .then((res) =>
-      res.map((e) => (e.avatar = new URL(e.avatar, BASE_URL).toString()))
+      res.map((e) => {
+        e.avatar = new URL(e.avatar, BASE_URL).toString();
+        return e;
+      })
     );
 };
 
@@ -67,7 +70,10 @@ const getElector = ({ id, token }) => {
     },
   })
     .then(handleRes)
-    .then((res) => (res.avatar = new URL(res.avatar, BASE_URL).toString()));
+    .then((res) => {
+      res.avatar = new URL(res.avatar, BASE_URL).toString();
+      return res;
+    });
 };
 
 const createElector = ({ token, ...data }) => {
