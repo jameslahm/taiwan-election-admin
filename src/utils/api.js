@@ -29,7 +29,7 @@ const uploadFile = ({ file, token }) => {
   })
     .then(handleRes)
     .then((res) => ({
-      url: `${BASE_URL}/${res.url}`
+      url: new URL(res.url, BASE_URL).toString(),
     }));
 };
 
@@ -49,7 +49,11 @@ const getElectors = ({ token }) => {
     headers: {
       Authorization: token,
     },
-  }).then(handleRes);
+  })
+    .then(handleRes)
+    .then((res) =>
+      res.map((e) => (e.avatar = new URL(e.avatar, BASE_URL).toString()))
+    );
 };
 
 const getElector = ({ id, token }) => {
@@ -58,7 +62,9 @@ const getElector = ({ id, token }) => {
     headers: {
       Authorization: token,
     },
-  }).then(handleRes);
+  })
+    .then(handleRes)
+    .then((res) => (res.avatar = new URL(res.avatar, BASE_URL).toString()));
 };
 
 const createElector = ({ token, ...data }) => {
