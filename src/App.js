@@ -6,7 +6,7 @@ import {
   ThemeProvider,
   Box,
 } from "@chakra-ui/core";
-import { Router } from "@reach/router";
+import { Redirect, Router } from "@reach/router";
 import Login from "./components/Login";
 import Elector from "./components/Elector";
 import ElectorList from "./components/ElectorList";
@@ -33,6 +33,7 @@ function App() {
           <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
           <Box maxWidth="4xl" mx="auto" width="100%" px={2} py={2}>
             <Router>
+              <Redirect to="/electors" from="/"></Redirect>
               <PrivateRoute
                 path="/electors"
                 component={ElectorList}
